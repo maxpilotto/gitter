@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: git ia [message]\n"
+    exit
+fi
+
+git init
+git add .
+git commit -m "$1"

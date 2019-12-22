@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: git db [branch1 branch2 ...]\n"
+    exit
+fi
+
+for branch in $@; do
+    git branch -d $branch
+done

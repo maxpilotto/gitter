@@ -1,0 +1,59 @@
+#!/bin/bash
+
+function usage(){
+    echo "Usage: git erase
+    -h, --help      Shows this help
+    -y, --yes       Confirms the actions without prompt
+    -f, --folder    Deletes the project folder content
+    "
+}
+
+for arg in $@; do
+    case $arg in
+        -y|--yes)
+            ask=0
+        ;;
+        
+        -h|--help)
+            usage
+            exit
+        ;;
+        
+        -f|--folder)
+            folder=1
+        ;;
+        
+        *)
+            usage
+            exitƒ
+        ;;
+    esac
+done
+
+if [[ $ask != 0 ]]; then
+    read -p "Are you really sure you want to delete this repository? (y/n) " -n 1
+    echo ""
+
+    if [[ ! $REPLY =~ [yY] ]]; then
+        exit
+    fi
+
+    if [[ $folder == 1 ]]; then
+        read -p "This will delete the project folder too, do you wish to continue? (y/n) " -n 1
+        echo ""
+
+        if [[ ! $REPLY =~ [yY] ]]; then
+            exit
+        fi
+    fi
+fi
+
+echo "Repository has been deleted"
+
+if [[ $folder == 1 ]]; then
+    echo "Files have been deleted"
+
+    rm -rf *
+fi
+
+rm -rf .git

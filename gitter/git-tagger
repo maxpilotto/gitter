@@ -1,0 +1,81 @@
+#!/bin/bash
+
+function usage(){
+    echo "Usage: git tagger
+    -h, --help      Show this help
+    -m, --major     Increase the major number
+    -n, --minor     Increase the minor number
+    -p, --patch     Increase the patch number
+    "
+}
+
+# Arguments count checking
+if [[ $# -lt 1 ]]; then
+    usage
+    exit
+fi
+
+format="([A-z]*[0-9]+.){2}([A-z]*[0-9]+)"
+latest=$(git describe --tags --abbrev=0)
+
+# Format checking
+if [[ ! $latest =~ $format ]]; then
+    echo "Latest version must matche the regex: $format"
+    exit
+fi
+
+# String split
+IFS='.' read -ra numbers <<< "$latest"
+
+major=${numbers[0]}
+minor=${numbers[1]}
+patch=${numbers[2]}
+
+# Argument parsing
+while [[ $# -gt 0 ]]
+do
+    case $1 in
+        -h|--help)
+            usage
+            exit
+        ;;
+        -m|--major)
+            n=$(echo "$major" | grep -Eo [0-9]+)
+
+            ((n=n+1))
+
+            major=${major//[0-9]*/$n}
+            minor=${minor//[0-9]*/0}
+            patch=${patch//[0-9]*/0}
+            shift
+        ;;
+        -n|--minor)
+            n=$(echo "$minor" | grep -Eo [0-9]+)
+
+            ((n=n+1))
+
+            minor=${minor//[0-9]*/$n}
+            patch=${patch//[0-9]*/0}
+            shift
+        ;;
+        -p|--patch)
+            n=$(echo "$patch" | grep -Eo [0-9]+)
+
+            ((n=n+1))
+
+            patch=${patch//[0-9]*/$n}
+            shift
+        ;;
+        *)
+            echo "Unknown argument $1\n"
+            usage
+            exit
+        ;;
+    esac
+done
+
+version="$major.$minor.$patch"
+
+echo "Upgrading from $latest to $version"
+
+git tag $version

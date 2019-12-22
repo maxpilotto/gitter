@@ -1,0 +1,43 @@
+[user]
+	email = GIT_EMAIL
+	name = GIT_NAME
+
+[alias]
+	# Generic
+	s = status			# Status
+	g = gui				# Opens the GUI (if installed)
+	l = log --oneline	# Logs with the --oneline option
+
+	# Pushing/Pulling
+	p = push			# Push
+	pa = push --all		# Pushes all branches
+	pp = pull			# Pull
+
+	# Fetching
+	f = fetch			# Fetches the current branch
+	fa = fetch --all	# Fetches all branches
+
+	# Committing
+	a = add									# Adds the given file
+	aa = add .								# Adds all files
+	c = commit -m							# Commits the changes with the given message
+	ca = add . && commit -m					# Stages all the files and commits with the given messages
+	upd = !git aa && git commit --amend		# Amends the last commit with all the changed files
+
+	# Branching
+	b = checkout			# Checks out the given branch
+	nb = checkout -b		# Checks out to a new branch
+	
+	# Discarding
+	discard = checkout --	# Discards the given file
+
+	# Stashing
+	save = stash save				 # Stashes the files with the given stash name
+	restore = stash pop --index 	 # Pops the given stash at the given index
+	stls = stash list				 # Show the stash list
+
+	# Git config
+	config-nano = !nano ~/.gitconfig	# Opens the .gitconfig file inside Nano
+	config-code = !code ~/.gitconfig	# Opens the .gitconfig file inside Visual Studio Code
+	config-vim = !vim ~/.gitconfig		# Opens the .gitconfig file inside Vim
+	config-em = !emacs ~/.gitconfig		# Opens the .gitconfig file inside Emacs
