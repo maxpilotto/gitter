@@ -52,6 +52,11 @@
 | `restore {index}`  | `stash pop --index` |
 | `stls`  | `stash list` |
 
+## Tagging
+
+|||
+| --- | --- |
+| `latest` | `!git describe --tags --abbrev=0` |
 
 ## Git config
 

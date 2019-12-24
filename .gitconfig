@@ -36,6 +36,9 @@
 	restore = stash pop --index 	 # Pops the given stash at the given index
 	stls = stash list				 # Show the stash list
 
+	# Tagging
+	latest = !git describe --tags --abbrev=0	# Shows the latest version
+
 	# Git config
 	config-nano = !nano ~/.gitconfig	# Opens the .gitconfig file inside Nano
 	config-code = !code ~/.gitconfig	# Opens the .gitconfig file inside Visual Studio Code
