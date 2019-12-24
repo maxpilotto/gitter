@@ -3,10 +3,12 @@ This script allows you to quickly create tags for your repository following the 
 
 ```bash
 git tagger
-    -h, --help      Show this help
-    -m, --major     Increase the major number
-    -n, --minor     Increase the minor number
-    -p, --patch     Increase the patch number
+    -h, --help              Show this help
+    -m, --major             Increase the major number
+    -n, --minor             Increase the minor number
+    -p, --patch             Increase the patch number
+    -t, --text [message]    Creates an annotated tag with the given message
+    
 ```
 
 Examples

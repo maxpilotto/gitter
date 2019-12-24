@@ -2,10 +2,11 @@
 
 function usage(){
     echo "Usage: git tagger
-    -h, --help      Show this help
-    -m, --major     Increase the major number
-    -n, --minor     Increase the minor number
-    -p, --patch     Increase the patch number
+    -h, --help              Show this help
+    -m, --major             Increase the major number
+    -n, --minor             Increase the minor number
+    -p, --patch             Increase the patch number
+    -t, --text [message]    Creates an annotated tag with the given message
     "
 }
 
@@ -38,6 +39,10 @@ do
         -h|--help)
             usage
             exit
+        ;;
+        -t|--text)
+            message=$2
+            shift; shift
         ;;
         -m|--major)
             n=$(echo "$major" | grep -Eo [0-9]+)
@@ -78,4 +83,11 @@ version="$major.$minor.$patch"
 
 echo "Upgrading from $latest to $version"
 
+# Checking whether it's a normal tag or an annotated one
+if [[ -z $message ]]; then
 git tag $version
+else
+    git tag -a $version -m "$message"
+fi
+
+echo "Upgrading from $latest to $version"
