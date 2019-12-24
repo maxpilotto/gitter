@@ -16,6 +16,13 @@ or
 cd gitter
 ./setup.sh
 ```
+
+For a quicker setup you can use the arguments `name (n)` and `mail (m)`
+
+```bash
+setup --name "Your name" --mail "me@mail.com"
+```
+
 **Note:** Linux and Mac already have the Bash, if you are using Windows you need to install a Bash port, like the one provided by Git itself
 
 ## Overview
