@@ -39,5 +39,5 @@ setup --name "Your name" --mail "me@mail.com"
 
 ## All features
 
-#### [Aliases](aliases.md)
-#### [Scripts](scripts.md)
+#### [Aliases](wiki/aliases.md)
+#### [Scripts](wiki/scripts.md)
