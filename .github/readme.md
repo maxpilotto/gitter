@@ -1,4 +1,4 @@
-# Gitter
+# git-tools
 Collection of scripts and aliases for Git to make its usage faster
 
 ## Installation
@@ -6,38 +6,31 @@ Collection of scripts and aliases for Git to make its usage faster
 + Run the `setup.sh`
 
 ```bash
-cd gitter
-sh setup.sh
+cd git-tools
+./setup
 ```
 
-or 
-
-```bash
-cd gitter
-./setup.sh
-```
-
-For a quicker setup you can use the arguments `name (n)` and `mail (m)`
-
-```bash
-setup --name "Your name" --mail "me@mail.com"
-```
-
-**Note:** Linux and Mac already have the Bash, if you are using Windows you need to install a Bash port, like the one provided by Git itself
+**Note:** This currently doesn't work on Windows
 
 ## Overview
 
-+ Create tags based on the last version and on the release type (major,minor,patch)
-    + `git tagger [-mnp]`
-+ Quick commits 
-    + `git ca [message]`
-    + `git aa && git c [message]`
++ Create tags based on the last version
+    ```
+    git tagger -m
+
+    > Upgrading from 1.1.0 to 2.0.0
+
+    git tagger -n
+
+    > Upgrading from 2.0.0 to 2.1.0
+    ```
++ Stage all files and commit 
+    + `git ca "Fix issue #233"`
 + Initialize a repo with all the files in the folder using 
-    + `git ia [message]`
+    + `gt ia "First commit"`
 + Delete multiple branches 
-    + `git db [branch1 branch2 ...]`
+    + `gt db development issue#45`
++ Reset a repository
+    + `gt erase -y`
 
-## All features
-
-#### [Aliases](wiki/aliases.md)
-#### [Scripts](wiki/scripts.md)
+## [Aliases](wiki/aliases.md)
