@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function usage() {
+    echo "USAGE
+    gt [command] [arguments]
+
+COMMANDS
+    db      Deletes one or more branches
+    erase   Deletes the current repository (.git folder)
+    ia      Initialize a new repository with the file in the current folder
+    tagger  Tagging utility
+    zip     Zips the current repository
+"
+}
+
+if [[ $# -lt 1 ]]; then
+    usage
+    exit
+fi
+
+/opt/maxpilotto/git-tools/$1 ${@:2}

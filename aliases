@@ -1,8 +1,5 @@
-[user]
-	email = GIT_EMAIL
-	name = GIT_NAME
 
-[alias]
+[alias]		# Aliases provided by github.com/maxpilotto/git-tools
 	# Generic
 	s = status			# Status
 	g = gui				# Opens the GUI (if installed)

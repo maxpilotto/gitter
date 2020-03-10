@@ -1,7 +1,9 @@
 #!/bin/bash
 
-function usage(){
-    echo "Usage: git tagger
+function usage() {
+    echo "Usage: git tagger [options]
+
+OPTIONS
     -h, --help              Show this help
     -m, --major             Increase the major number
     -n, --minor             Increase the minor number
@@ -31,55 +33,55 @@ if [[ ! $latest =~ $format ]]; then
 fi
 
 # String split
-IFS='.' read -ra numbers <<< "$latest"
+IFS='.' read -ra numbers <<<"$latest"
 
 major=${numbers[0]}
 minor=${numbers[1]}
 patch=${numbers[2]}
 
 # Argument parsing
-while [[ $# -gt 0 ]]
-do
+while [[ $# -gt 0 ]]; do
     case $1 in
-        -h|--help)
-            usage
-            exit
+    -h | --help)
+        usage
+        exit
         ;;
-        -t|--text)
-            message=$2
-            shift; shift
+    -t | --text)
+        message=$2
+        shift
+        shift
         ;;
-        -m|--major)
-            n=$(echo "$major" | grep -Eo [0-9]+)
+    -m | --major)
+        n=$(echo "$major" | grep -Eo [0-9]+)
 
-            ((n=n+1))
+        ((n = n + 1))
 
-            major=${major//[0-9]*/$n}
-            minor=${minor//[0-9]*/0}
-            patch=${patch//[0-9]*/0}
-            shift
+        major=${major//[0-9]*/$n}
+        minor=${minor//[0-9]*/0}
+        patch=${patch//[0-9]*/0}
+        shift
         ;;
-        -n|--minor)
-            n=$(echo "$minor" | grep -Eo [0-9]+)
+    -n | --minor)
+        n=$(echo "$minor" | grep -Eo [0-9]+)
 
-            ((n=n+1))
+        ((n = n + 1))
 
-            minor=${minor//[0-9]*/$n}
-            patch=${patch//[0-9]*/0}
-            shift
+        minor=${minor//[0-9]*/$n}
+        patch=${patch//[0-9]*/0}
+        shift
         ;;
-        -p|--patch)
-            n=$(echo "$patch" | grep -Eo [0-9]+)
+    -p | --patch)
+        n=$(echo "$patch" | grep -Eo [0-9]+)
 
-            ((n=n+1))
+        ((n = n + 1))
 
-            patch=${patch//[0-9]*/$n}
-            shift
+        patch=${patch//[0-9]*/$n}
+        shift
         ;;
-        *)
-            echo "Unknown argument $1\n"
-            usage
-            exit
+    *)
+        echo "Unknown argument $1\n"
+        usage
+        exit
         ;;
     esac
 done

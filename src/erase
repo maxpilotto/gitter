@@ -1,7 +1,9 @@
 #!/bin/bash
 
-function usage(){
-    echo "Usage: git erase
+function usage() {
+    echo "Usage: git erase [options]
+
+OPTIONS
     -h, --help      Shows this help
     -y, --yes       Confirms the actions without prompt
     -f, --folder    Deletes the project folder content
@@ -10,22 +12,22 @@ function usage(){
 
 for arg in $@; do
     case $arg in
-        -y|--yes)
-            ask=0
+    -y | --yes)
+        ask=0
         ;;
-        
-        -h|--help)
-            usage
-            exit
+
+    -h | --help)
+        usage
+        exit
         ;;
-        
-        -f|--folder)
-            folder=1
+
+    -f | --folder)
+        folder=1
         ;;
-        
-        *)
-            usage
-            exitƒ
+
+    *)
+        usage
+        exitƒ
         ;;
     esac
 done
