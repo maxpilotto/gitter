@@ -16,13 +16,13 @@ cd git-tools
 
 + Create tags based on the last version
     ```
-    git tagger -m
+    $ git tagger -m
 
-    > Upgrading from 1.1.0 to 2.0.0
+    Upgrading from 1.1.0 to 2.0.0
 
-    git tagger -n
+    $ git tagger -n
 
-    > Upgrading from 2.0.0 to 2.1.0
+    Upgrading from 2.0.0 to 2.1.0
     ```
 + Stage all files and commit 
     + `git ca "Fix issue #233"`
@@ -32,5 +32,11 @@ cd git-tools
     + `gt db development issue#45`
 + Reset a repository
     + `gt erase -y`
++ Compress a repository
+    ```
+    $ gt zip -jv
+
+    Repository compressed as git-tools_2.0.0.tar.bz2
+    ```
 
 ## [Aliases](wiki/aliases.md)

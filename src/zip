@@ -1,0 +1,63 @@
+#!/bin/bash
+
+function usage() {
+    echo "Usage: gt zip [options]
+
+OPTIONS
+    -c  Clears the repository before zipping
+    -z  Creates a gzip archive
+    -j  Creates a bzip2 archive
+    -b  Appends the current branch to the filename
+    -v  Appends the latest tag name to the filename
+    -h  Shows this help"
+}
+
+version=''
+branch=''
+
+while getopts "czjbvh" opt; do
+    case "$opt" in
+        h) usage; exit ;;
+        c) clear_flag=1 ;;
+        z) gzip_flag=1 ;;
+        j) bzip_flag=1 ;;
+        b) branch=$(git rev-parse --abbrev-ref HEAD) ;;
+        v) version=$(git describe --tags --abbrev=0) ;;
+    esac
+done
+
+input=$(basename $(pwd))
+output="$input"
+
+# Clear repository if needed
+if [[ $clear_flag == 1 ]]; then
+    git clean -xdf
+fi
+
+# Filename additions
+if [[ ! -z $branch ]]; then
+    output="${output}_$branch"
+fi
+
+if [[ ! -z $version ]]; then
+    output="${output}_$version"
+fi
+
+output="$output.tar"
+
+cd ..
+
+# Compression method
+if [[ $gzip_flag == 1 ]]; then
+    output="$output.gz"
+    tar -zcf $output $input
+elif [[ $bzip_flag == 1 ]]; then
+    output="$output.bz2"
+    tar -jcf $output $input
+else
+    tar -cf $output $input
+fi
+
+cd $input
+
+echo "Repository compressed as $output"
