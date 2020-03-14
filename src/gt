@@ -18,4 +18,4 @@ if [[ $# -lt 1 ]]; then
     exit
 fi
 
-/opt/maxpilotto/git-tools/$1 ${@:2}
+./$1 ${@:2}

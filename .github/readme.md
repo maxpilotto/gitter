@@ -38,5 +38,10 @@ cd git-tools
 
     Repository compressed as git-tools_2.0.0.tar.bz2
     ```
++ Advanced ignores
+    ```
+    $ gt ignore -o gradle,java,maven
+    $ gt ignore android
+    ```
 
 ## [Aliases](wiki/aliases.md)

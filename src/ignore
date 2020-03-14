@@ -1,0 +1,79 @@
+#!/bin/bash
+# 
+# Utility for creating/modifying .gitignore files, this utility fetches the 
+# ignored files from https://www.gitignore.io
+
+function usage() {
+    echo "Usage: gt ignore [options]
+
+OPTIONS
+    -a  Append mode
+    -q  OSs, IDEs or programming languages, separated by a comma
+    -o  All OS ignored files, shorthand for -LWM
+
+    -L  Linux .gitignore
+    -W  Windows .gitignore
+    -M  macOS .gitignore
+
+    -h  Show this help
+
+EXAMPLES
+    gt ignore -q node,visualstudiocode
+    gt ignore -LWMq java,gradle
+"
+}
+
+base_url="https://www.gitignore.io/api/"
+
+if [[ $# -lt 1 ]]; then 
+    usage
+    exit
+fi
+
+# TODO Add option for ignoring files and folders, ecc
+while getopts "aq:oLWMh" opt; do
+    case "$opt" in
+        h) usage; exit ;;
+        a) append_flag=1 ;;
+        q) query=$OPTARG ;;
+        o) os_flag=1 ;;
+        L) linux_flag=1 ;;
+        W) windows_flag=1 ;;
+        M) darwin_flag=1 ;;
+    esac
+done
+
+if [[ $os_flag == 1 ]]; then
+    base_url="${base_url}linux,windows,macos,"
+else
+    if [[ $linux_flag == 1 ]]; then
+        base_url="${base_url}linux,"
+    fi
+
+    if [[ $windows_flag == 1 ]]; then
+        base_url="${base_url}windows,"
+    fi
+
+    if [[ $darwin_flag == 1 ]]; then
+        base_url="${base_url}macos,"
+    fi
+fi
+
+if [[ ! -z $query ]]; then
+    base_url="$base_url$query,"
+fi
+
+if [[ ${base_url: -1} == ',' ]]; then
+    base_url=${base_url%?}
+fi
+
+IFS=    # This prevents the line breaks from being removed
+content=$(curl -s $base_url)
+
+if [[ $append_flag == 1 ]]; then
+    echo $content >> .gitignore
+else
+    # TODO Ask for permission
+
+    echo $content > .gitignore
+fi
