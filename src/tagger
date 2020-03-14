@@ -9,7 +9,7 @@ OPTIONS
     -n, --minor             Increase the minor number
     -p, --patch             Increase the patch number
     -t, --text [message]    Creates an annotated tag with the given message
-    "
+"
 }
 
 # Arguments count checking

@@ -7,7 +7,7 @@ OPTIONS
     -h, --help      Shows this help
     -y, --yes       Confirms the actions without prompt
     -f, --folder    Deletes the project folder content
-    "
+"
 }
 
 for arg in $@; do

@@ -9,7 +9,8 @@ OPTIONS
     -j  Creates a bzip2 archive
     -b  Appends the current branch to the filename
     -v  Appends the latest tag name to the filename
-    -h  Shows this help"
+    -h  Shows this help
+"
 }
 
 version=''
