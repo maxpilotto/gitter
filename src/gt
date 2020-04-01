@@ -6,6 +6,7 @@ function usage() {
 
 COMMANDS
     db      Deletes one or more branches
+    ignore  Ignore specific platforms/os/frameworks
     erase   Deletes the current repository (.git folder)
     ia      Initialize a new repository with the file in the current folder
     tagger  Tagging utility
